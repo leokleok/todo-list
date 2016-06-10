@@ -4,12 +4,14 @@ $(document).ready(function(){
 
    if($(".form-control").val() !== '') {
      var toAdd = $(".form-control").val()
-     $(".todo-now").append(
+     $("table").append(
+       "<tr>" +
        "<td>" + toAdd + "</td>" +
        '<td class="text-right">' +
        '<button class="btn btn-danger"><i class="glyphicon glyphicon-remove"></i></button>' +
        '<button class="btn btn-success"><i class="glyphicon glyphicon-ok"></i></button>' +
-       "</td>"
+       "</td>" +
+       "</tr>"
      );
    }
    else {
@@ -18,8 +20,8 @@ $(document).ready(function(){
 
  });
 
- $(".btn btn-danger").on("click", function(event){
+$('button').on('click', function(){
+  $('.btn btn-danger').remove()
 
-      console.log('remove');
- });
+  });
 });
