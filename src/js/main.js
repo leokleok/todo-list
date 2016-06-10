@@ -8,7 +8,7 @@ $(document).ready(function(){
        "<tr>" +
        "<td>" + toAdd + "</td>" +
        '<td class="text-right">' +
-       '<button class="btn btn-danger"><i class="glyphicon glyphicon-remove"></i></button>' +
+       '<button class="btn btn-danger"><i class="glyphicon glyphicon-remove"></i></button> ' +
        '<button class="btn btn-success"><i class="glyphicon glyphicon-ok"></i></button>' +
        "</td>" +
        "</tr>"
@@ -29,8 +29,14 @@ $('table').on('click', 'button.btn.btn-danger', function(){
   deleteTodoItem(item)
 });
 
-$('button.btn.btn-success').click(function() {
-  // console.log("Hi")
-   $(this).parents('tr').addClass('todo-completed')
-  });
+function completeTodoItem(item) {
+  $(item).parents('tr').children('td').first().addClass('todo-completed')
+}
+
+$('table').on('click', 'button.btn.btn-success', function(){
+  var item = $(this);
+  completeTodoItem(item)
+});
+
+
 });
