@@ -19,20 +19,18 @@ $(document).ready(function(){
    }
  });
 
- function deleteTodoItem(e, item) {
-  e.preventDefault();
-    $(item).parent().closest('tr').remove();
+// event delegation method. 'table' is the event handler while 'button.btn.btn-danger' does not exist when the document loads, it is generated later by a form entry.
+ function deleteTodoItem(item) {
+  $(item).parent().closest('tr').remove();
 }
 
-$('table').on('click', 'button.btn.btn-danger', function(e){
+$('table').on('click', 'button.btn.btn-danger', function(){
   var item = $(this);
-  console.log($(this))
-  deleteTodoItem(e, item)
+  deleteTodoItem(item)
 });
 
-// $('button.btn.btn-success').on('click', function(){
-//   $(".todo-completed").
-//   console.log($(this))
-//   });
-
+$('button.btn.btn-success').click(function() {
+  // console.log("Hi")
+   $(this).parents('tr').addClass('todo-completed')
+  });
 });
