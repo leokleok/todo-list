@@ -26,14 +26,10 @@ $(document).ready(function(){
 
 $('table').on('click', 'button.btn.btn-danger', function(e){
   var item = $(this);
+  console.log($(this))
   deleteTodoItem(e, item)
 });
 
-// $('button.btn.btn-danger').on('click', function(){
-//
-//
-//   });
-//
 // $('button.btn.btn-success').on('click', function(){
 //   $(".todo-completed").
 //   console.log($(this))
