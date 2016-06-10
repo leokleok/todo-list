@@ -17,11 +17,26 @@ $(document).ready(function(){
    else {
         return false;
    }
-
  });
 
-$('button').on('click', function(){
-  $('.btn btn-danger').remove()
+ function deleteTodoItem(e, item) {
+  e.preventDefault();
+    $(item).parent().closest('tr').remove();
+}
 
-  });
+$('table').on('click', 'button.btn.btn-danger', function(e){
+  var item = $(this);
+  deleteTodoItem(e, item)
+});
+
+// $('button.btn.btn-danger').on('click', function(){
+//
+//
+//   });
+//
+// $('button.btn.btn-success').on('click', function(){
+//   $(".todo-completed").
+//   console.log($(this))
+//   });
+
 });
