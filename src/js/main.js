@@ -26,11 +26,16 @@ $(document).ready(function(){
 
 $('table').on('click', 'button.btn.btn-danger', function(){
   var item = $(this);
+  if (!confirm("Are you sure you want to remove this task?")) {
+    return false
+  };
   deleteTodoItem(item)
 });
 
+
+//parent children method is vulnerable because if someone changes markup positions, this code will break.
 function completeTodoItem(item) {
-  $(item).parents('tr').children('td').first().addClass('todo-completed')
+  $(item).parents('tr').children('td').first().toggleClass('todo-completed')
 }
 
 $('table').on('click', 'button.btn.btn-success', function(){
@@ -38,5 +43,17 @@ $('table').on('click', 'button.btn.btn-success', function(){
   completeTodoItem(item)
 });
 
+
+// function removeAllCompleted (item) {
+//   if (completeTodoItem(item) == true) {
+//     $('.todo-completed').remove()
+//   };
+// }
+//
+// $('button.btn.btn-removeall').click(function(){
+//   // console.log("hi")
+//   var item = $(this)
+//   removeAllCompleted(item)
+// });
 
 });
