@@ -20,6 +20,7 @@ $(document).ready(function(){
  });
 
 // event delegation method. 'table' is the event handler while 'button.btn.btn-danger' does not exist when the document loads, it is generated later by a form entry.
+// Deletes Task
  function deleteTodoItem(item) {
   $(item).parent().closest('tr').remove();
 }
@@ -34,6 +35,7 @@ $('table').on('click', 'button.btn.btn-danger', function(){
 
 
 //parent children method is vulnerable because if someone changes markup positions, this code will break.
+//Task completes, it gets strike through.
 function completeTodoItem(item) {
   $(item).parents('tr').children('td').first().toggleClass('todo-completed')
 }
@@ -43,17 +45,17 @@ $('table').on('click', 'button.btn.btn-success', function(){
   completeTodoItem(item)
 });
 
+//Add a button & remove all completed tasks.
+function removeAllCompleted () {
+  $('tr').each(function(){
+    if($(this).children().first().hasClass('todo-completed')){
+    $(this).remove()
+    }
+  });
+}
 
-// function removeAllCompleted (item) {
-//   if (completeTodoItem(item) == true) {
-//     $('.todo-completed').remove()
-//   };
-// }
-//
-// $('button.btn.btn-removeall').click(function(){
-//   // console.log("hi")
-//   var item = $(this)
-//   removeAllCompleted(item)
-// });
+$('button.btn.btn-removeall').click(function(){
+  removeAllCompleted()
+});
 
 });
