@@ -24,8 +24,9 @@ $(function(){
  });
 
 function countActive () {
-  var n = $('tr').length;
-  $('#count').text("You have " + n + " tasks")
+  var total = $('tr').length;
+  var completed = $('.todo-completed').length
+  $('#count').text("You have " + total + " tasks and " + completed + " completed tasks")
 }
 
 // event delegation method. 'table' is the event handler while 'button.btn.btn-danger' does not exist when the document loads, it is generated later by a form entry.
@@ -48,13 +49,12 @@ $('table').on('click', 'button.btn.btn-danger', function(){
 //Task completes, it gets strike through.
 function completeTodoItem(item) {
   $(item).parents('tr').children('td').first().toggleClass('todo-completed')
+  countActive()
 }
 
 $('table').on('click', 'button.btn.btn-success', function(){
   var item = $(this);
   completeTodoItem(item)
-  // $('#count').text('There are now' + listCompleted + ' tasks completed')
-  // count ++
     // $(this).replaceWith('<button class="btn btn-info"><i class="glyphicon glyphicon-repeat"></i></button>')
 });
 
