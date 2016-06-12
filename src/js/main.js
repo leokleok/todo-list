@@ -1,4 +1,5 @@
-$(document).ready(function(){
+$(function(){
+
 
  $(".input-group-addon").click(function(){
 
@@ -10,7 +11,7 @@ $(document).ready(function(){
        '<td class="text-right">' +
        '<button class="btn btn-danger"><i class="glyphicon glyphicon-remove"></i></button> ' +
        '<button class="btn btn-success"><i class="glyphicon glyphicon-ok"></i></button>' +
-      //  ' <input type="submit id=edit" + value="toAdd"> Edit' +
+      //  '<button class="btn btn-edit><input type="submit id=edit" + value="Edit"> </button>' +
        "</td>" +
        "</tr>"
      );
@@ -18,7 +19,14 @@ $(document).ready(function(){
    else {
         return false;
    }
+
+   countActive()
  });
+
+function countActive () {
+  var n = $('tr').length;
+  $('#count').text("You have " + n + " tasks")
+}
 
 // event delegation method. 'table' is the event handler while 'button.btn.btn-danger' does not exist when the document loads, it is generated later by a form entry.
 // Deletes Task
@@ -32,6 +40,7 @@ $('table').on('click', 'button.btn.btn-danger', function(){
     return false
   };
   deleteTodoItem(item)
+  countActive()
 });
 
 
@@ -44,14 +53,10 @@ function completeTodoItem(item) {
 $('table').on('click', 'button.btn.btn-success', function(){
   var item = $(this);
   completeTodoItem(item)
+  // $('#count').text('There are now' + listCompleted + ' tasks completed')
+  // count ++
     // $(this).replaceWith('<button class="btn btn-info"><i class="glyphicon glyphicon-repeat"></i></button>')
 });
-
-//edit
-  // $('#edit').click(function(){
-  //   $(this).prev().attr('contenteditable','true');
-  //   $(this).prev().focus();
-  // });
 
 
 //Add a button & remove all completed tasks.
@@ -61,6 +66,7 @@ function removeAllCompleted () {
     $(this).remove()
     }
   });
+  countActive()
 }
 
 //Add a button & remove all completed tasks.
@@ -77,6 +83,5 @@ function removeAll () {
 $('button.btn.btn-removeall').click(function(){
   removeAll()
 });
-
 
 });
