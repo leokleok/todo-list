@@ -77,6 +77,7 @@ $('button.btn.btn-removecomplete').click(function(){
 //remove all tasks
 function removeAll () {
   $('tr').remove()
+  countActive()
 }
 
 //remove all tasks
