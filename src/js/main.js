@@ -25,8 +25,9 @@ $(function(){
 
 function countActive () {
   var total = $('tr').length;
-  var completed = $('.todo-completed').length
-  $('#count').text("You have " + total + " tasks and " + completed + " completed tasks")
+  var completedTask = $('.todo-completed').length
+  var activeTask = total - completedTask
+  $('#count').text(total + " total tasks. " + activeTask + " active. " + completedTask + " completed ")
 }
 
 // event delegation method. 'table' is the event handler while 'button.btn.btn-danger' does not exist when the document loads, it is generated later by a form entry.
